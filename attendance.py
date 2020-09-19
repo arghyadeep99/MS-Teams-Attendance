@@ -27,7 +27,7 @@ step1 = Image.open("./step1.jpg")
 st.sidebar.image(step1, use_column_width=True)
 
 st.sidebar.markdown('2) Open the CSV and it should look something like this:')
-step2 = Image.open(r"./step2.jpg")
+step2 = Image.open("./step2.jpg")
 
 st.sidebar.image(step2, use_column_width=True)
 
