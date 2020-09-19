@@ -45,14 +45,11 @@ if uploaded_file is not None:
 	@st.cache(allow_output_mutation=True)
 	def calculate_attendance(file, start_time=None, end_time=None, encoding='utf-8', separator=','):
 		file = pd.read_csv(file, encoding=encoding, sep=separator)
-		#start_time, end_time = datetime(2020, 9, 4, 13, 15, 0), datetime(2020, 9, 4, 14, 15, 0)
 		file.Timestamp = pd.to_datetime(file['Timestamp'], infer_datetime_format=True)
 		
 		df = pd.DataFrame(columns = ["Full Name", "Total Time"])
 		df["Full Name"] = file["Full Name"]
 		names = df["Full Name"].unique().tolist()
-		df.sort_values(by=['Full Name']).reset_index()
-
 			
 		try:
 			for i in df.index:
@@ -77,7 +74,6 @@ if uploaded_file is not None:
 			df['Total Time'] = pd.to_timedelta(df['Total Time'])
 			df['Total Time'] = df['Total Time'] - pd.to_timedelta(df['Total Time'].dt.days, unit='d')
 			df = df.drop_duplicates()
-			df.head(126)
 
 		except Exception as e:
 			print(e)
@@ -88,7 +84,7 @@ if uploaded_file is not None:
 		return df
 
 	encoding = st.selectbox('Enter Encoding option:', ['utf-8', 'utf-7', 'utf-16', 'ISO-8859-1'])
-	sep = st.selectbox('Separator:', [',', '\\t', 'utf-16', 'ISO-8859-1'])
+	sep = st.selectbox('Separator:', [',', '\\t', '\\s', ';'])
 
 	start_date = st.date_input("Enter Meeting Date(YYYY/MM/DD):",value=datetime.now())
 	st.write("Start date:", start_date)
@@ -105,6 +101,7 @@ if uploaded_file is not None:
 		b64 = base64.b64encode(csv.encode()).decode()  # some strings <-> bytes conversions necessary here
 		href = f'<a href="data:file/csv; base64,{b64}">Download CSV File</a>'
 
+		st.markdown("When clicking on the link below, make sure to save it as <filename>.csv. Don't forget to add the csv extension.")
 		st.markdown(href, unsafe_allow_html=True)
 
 		st.table(df)
