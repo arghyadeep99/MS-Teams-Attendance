@@ -79,6 +79,7 @@ if uploaded_file is not None:
 			print(e)
 
 		df = df.dropna()
+		df = df.sort_values(by=['Full Name'])
 		df.reset_index(drop=True)
 		df.index = range(1,len(df)+1)
 		return df
