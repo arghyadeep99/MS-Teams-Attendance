@@ -14,7 +14,7 @@ st.sidebar.title("MS-Teams Attendance Formatter")
 st.set_option('deprecation.showfileUploaderEncoding', False)
 
 st.sidebar.image(logo, use_column_width=True)
-st.sidebar.markdown("This app analyzes your WhatsApp Chats")
+st.sidebar.markdown("Created with ❤️ by Arghyadeep Das")
 
 st.sidebar.markdown('[![Arghyadeep Das]\
 					(https://img.shields.io/badge/Author-@arghyadeep99-gray.svg?colorA=gray&colorB=dodgerblue&logo=github)]\
