@@ -109,4 +109,3 @@ if uploaded_file is not None:
 	else:
 		start_time = start_time
 		end_time = end_time
-
